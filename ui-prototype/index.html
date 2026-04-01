@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>青州卷烟厂能源管理系统 - UI原型</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <aside class="login-screen" id="loginScreen">
+      <div class="login-header">青州卷烟厂能源管理系统</div>
+      <div class="login-main">
+        <div class="login-brand">
+          <h2>工业能源智慧管控平台</h2>
+          <p>大气 · 稳重 · 高效</p>
+          <div class="brand-grid">
+            <div>动力车间</div>
+            <div>制丝车间</div>
+            <div>卷包车间</div>
+            <div>能源中心</div>
+          </div>
+        </div>
+        <div class="login-card">
+          <h3>账号登录</h3>
+          <label>用户名</label>
+          <input type="text" placeholder="请输入用户名" value="admin" />
+          <label>密码</label>
+          <input type="password" placeholder="请输入密码" value="******" />
+          <label>验证码</label>
+          <div class="row">
+            <input type="text" placeholder="验证码" />
+            <button class="btn btn-ghost">K8P2</button>
+          </div>
+          <div class="row between mt12">
+            <label class="check"><input type="checkbox" checked /> 记住账号</label>
+            <a href="#">忘记密码</a>
+          </div>
+          <button class="btn btn-primary full mt16" id="enterBtn">登录系统</button>
+        </div>
+      </div>
+      <div class="login-footer">版本 V1.0.0 · 青州卷烟厂能源管理系统</div>
+    </aside>
+
+    <div class="shell hidden" id="mainShell">
+      <header class="top-nav">
+        <div class="left">
+          <div class="logo">中烟</div>
+          <div class="sys-title">青州卷烟厂能源管理系统</div>
+          <nav class="top-menu">
+            <a class="active">首页</a>
+            <a>能耗统计</a>
+            <a>能效分析</a>
+            <a>综合报表</a>
+            <a>综合管理</a>
+          </nav>
+        </div>
+        <div class="right">
+          <input class="global-search" placeholder="搜索页面/设备/报表" />
+          <span class="badge">3</span>
+          <span>运维值班员</span>
+        </div>
+      </header>
+
+      <div class="body-wrap">
+        <aside class="side-menu">
+          <div class="menu-title">功能导航</div>
+          <ul>
+            <li class="active" data-page="dashboard">首页驾驶舱</li>
+            <li data-page="energy">能耗统计</li>
+            <li data-page="alarm">报警管理</li>
+            <li data-page="entry">数据录入</li>
+            <li data-page="report">综合报表（帆软）</li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <div class="tab-bar">
+            <span class="tab active" id="tabName">首页驾驶舱</span>
+          </div>
+
+          <section class="page active" id="page-dashboard">
+            <div class="title-bar">
+              <h2>首页驾驶舱</h2>
+              <div class="ops">
+                <button class="btn btn-ghost">刷新</button>
+                <button class="btn btn-primary">导出看板</button>
+              </div>
+            </div>
+            <div class="query-bar">
+              <input value="2026-04-01" />
+              <select><option>白班</option></select>
+              <select><option>全厂</option></select>
+              <button class="btn btn-primary">查询</button>
+            </div>
+
+            <div class="kpi-grid">
+              <div class="kpi"><div>综合电耗(kWh)</div><strong>1,286,530</strong><small>同比 +3.2%</small></div>
+              <div class="kpi"><div>综合水耗(t)</div><strong>8,420</strong><small>同比 -1.1%</small></div>
+              <div class="kpi"><div>蒸汽耗量(t)</div><strong>1,236</strong><small>同比 +0.6%</small></div>
+              <div class="kpi"><div>天然气(Nm³)</div><strong>42,890</strong><small>同比 -2.8%</small></div>
+              <div class="kpi"><div>压缩空气(Nm³)</div><strong>91,360</strong><small>同比 +1.5%</small></div>
+              <div class="kpi"><div>当日单耗</div><strong>0.283</strong><small>较目标 -0.012</small></div>
+            </div>
+
+            <div class="panel-grid">
+              <div class="card large">
+                <h3>全厂综合能耗趋势（24h）</h3>
+                <div class="chart-placeholder">折线图区域</div>
+              </div>
+              <div class="card">
+                <h3>实时告警</h3>
+                <ul class="list">
+                  <li><span class="tag danger">高</span> 空压站2#出口压力偏低</li>
+                  <li><span class="tag warn">中</span> 制丝车间蒸汽瞬时超阈值</li>
+                  <li><span class="tag normal">低</span> 锅炉房温度波动</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>车间单耗排行</h3>
+                <ol class="rank">
+                  <li>制丝车间 <b>0.315</b></li>
+                  <li>卷包车间 <b>0.289</b></li>
+                  <li>动力车间 <b>0.241</b></li>
+                </ol>
+              </div>
+              <div class="card">
+                <h3>设备健康度</h3>
+                <div class="health">空压系统 92% · 制冷系统 88% · 锅炉系统 95%</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="page" id="page-energy">
+            <div class="title-bar">
+              <h2>能耗统计 / 全厂总览</h2>
+              <div class="ops">
+                <button class="btn btn-ghost">打印</button>
+                <button class="btn btn-primary">导出</button>
+              </div>
+            </div>
+            <div class="query-bar">
+              <input value="2026-03-01 ~ 2026-04-01" />
+              <select><option>介质：全部</option></select>
+              <select><option>区域：全厂</option></select>
+              <select><option>班次：全部</option></select>
+              <button class="btn btn-primary">查询</button>
+              <button class="btn btn-ghost">重置</button>
+            </div>
+            <div class="panel-grid two">
+              <div class="card"><h3>分介质趋势</h3><div class="chart-placeholder">趋势图</div></div>
+              <div class="card"><h3>能耗结构占比</h3><div class="chart-placeholder">环图</div></div>
+            </div>
+            <div class="card mt20">
+              <h3>能耗明细表</h3>
+              <table>
+                <thead><tr><th>日期</th><th>车间</th><th>电(kWh)</th><th>水(t)</th><th>蒸汽(t)</th><th>天然气(Nm³)</th><th>单耗</th></tr></thead>
+                <tbody>
+                  <tr><td>2026-04-01</td><td>制丝</td><td>312,510</td><td>2,130</td><td>420</td><td>8,220</td><td>0.315</td></tr>
+                  <tr><td>2026-04-01</td><td>卷包</td><td>298,330</td><td>1,980</td><td>390</td><td>7,910</td><td>0.289</td></tr>
+                  <tr><td>2026-04-01</td><td>动力</td><td>245,880</td><td>1,620</td><td>320</td><td>6,500</td><td>0.241</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="page" id="page-alarm">
+            <div class="title-bar">
+              <h2>综合管理 / 报警管理</h2>
+              <div class="ops">
+                <button class="btn btn-ghost">批量确认</button>
+                <button class="btn btn-primary">批量派单</button>
+              </div>
+            </div>
+            <div class="query-bar">
+              <select><option>级别：全部</option></select>
+              <select><option>状态：处理中</option></select>
+              <select><option>车间：全部</option></select>
+              <input value="2026-04-01" />
+              <button class="btn btn-primary">查询</button>
+            </div>
+            <div class="card">
+              <h3>报警列表</h3>
+              <table>
+                <thead><tr><th>级别</th><th>报警内容</th><th>来源</th><th>持续时长</th><th>责任人</th><th>状态</th><th>操作</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="tag danger">高</span></td><td>空压站2#出口压力偏低</td><td>空压系统</td><td>00:23:12</td><td>张工</td><td>处理中</td><td><a href="#">查看详情</a></td></tr>
+                  <tr><td><span class="tag warn">中</span></td><td>制丝蒸汽瞬时超阈值</td><td>蒸汽系统</td><td>00:09:52</td><td>李工</td><td>待确认</td><td><a href="#">派单</a></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card mt20">
+              <h3>处置详情（抽屉示意）</h3>
+              <div class="flow">发现 → 确认 → 处理 → 复核 → 闭环</div>
+              <div class="chart-placeholder">处置表单区（原因、措施、责任人、附件）</div>
+            </div>
+          </section>
+
+          <section class="page" id="page-entry">
+            <div class="title-bar">
+              <h2>数据录入 / 手抄表录入</h2>
+              <div class="ops">
+                <button class="btn btn-ghost">暂存</button>
+                <button class="btn btn-primary">保存并继续</button>
+              </div>
+            </div>
+            <div class="query-bar">
+              <select><option>介质：水</option></select>
+              <input value="2026-04-01" />
+              <select><option>班次：白班</option></select>
+              <button class="btn btn-primary">加载点位</button>
+            </div>
+            <div class="card">
+              <h3>批量录入</h3>
+              <table>
+                <thead><tr><th>点位</th><th>读数</th><th>单位</th><th>状态</th><th>备注</th></tr></thead>
+                <tbody>
+                  <tr><td>制丝-1#流量计</td><td>128.6</td><td>t</td><td><span class="tag normal">正常</span></td><td>-</td></tr>
+                  <tr><td>卷包-2#流量计</td><td>98.2</td><td>t</td><td><span class="tag warn">越限</span></td><td>需复核</td></tr>
+                  <tr><td>动力-总表</td><td>220.4</td><td>t</td><td><span class="tag normal">正常</span></td><td>-</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="page" id="page-report">
+            <div class="title-bar">
+              <h2>综合报表管理 / 能源看板（帆软）</h2>
+              <div class="ops">
+                <button class="btn btn-ghost">全屏</button>
+                <button class="btn btn-ghost">打印</button>
+                <button class="btn btn-primary">导出Excel</button>
+              </div>
+            </div>
+            <div class="query-bar">
+              <select><option>报表模板：全厂能耗日报</option></select>
+              <input value="2026-04" />
+              <select><option>车间：全厂</option></select>
+              <select><option>介质：全部</option></select>
+              <button class="btn btn-primary">查询</button>
+            </div>
+            <div class="card fr-card">
+              <div class="fr-toolbar">
+                <button class="btn btn-ghost">导出PDF</button>
+                <button class="btn btn-ghost">导出Excel</button>
+                <button class="btn btn-ghost">订阅</button>
+              </div>
+              <div class="fr-iframe">
+                <div class="fr-header">【帆软报表区】样式已与系统统一（字体/按钮/色板/卡片）</div>
+                <div class="fr-body">
+                  <div class="chart-placeholder">报表图表区域</div>
+                  <table>
+                    <thead><tr><th>日期</th><th>电耗</th><th>水耗</th><th>蒸汽</th><th>单耗</th></tr></thead>
+                    <tbody>
+                      <tr><td>2026-04-01</td><td>1,286,530</td><td>8,420</td><td>1,236</td><td>0.283</td></tr>
+                      <tr><td>2026-03-31</td><td>1,270,110</td><td>8,500</td><td>1,210</td><td>0.287</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
